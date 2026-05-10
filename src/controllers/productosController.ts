@@ -3,6 +3,7 @@ import { CreateProductDTO, ResponseBody, ProductId, UpdateProductDTO, ApiRespons
 import { Response, Request } from "express";
 
 export class ProductosController {
+
     constructor(private ps: ProductosService = new ProductosService()) { 
         this.getAll = this.getAll.bind(this);
         this.getById = this.getById.bind(this);
@@ -67,7 +68,6 @@ export class ProductosController {
             const { id } = req.params;
             const deleted = await this.ps.deleteById(id)
             return res.status(200).json(deleted)
-
         } catch (error) {
             const message = error instanceof Error ? error.message : String(error);
             console.error(`Error al eliminar el producto: ${message}`);
